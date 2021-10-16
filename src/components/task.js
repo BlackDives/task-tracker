@@ -1,3 +1,4 @@
+import React from "react";
 import TaskBox from "./TaskBox";
 
 const Task = ({ task, onDelete, onTogge }) => {
