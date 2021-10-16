@@ -4,6 +4,7 @@ import Task from "./components/task";
 import AddTask from "./components/AddTask";
 
 function App() {
+  const [showAddTask, setShowAddTask] = useState(false);
   const [task, setTask] = useState([
     {
       id: 1,
@@ -26,9 +27,11 @@ function App() {
   ]);
 
   //Add task
-  const addTask = (task) => {
+  const addTask = (tasks) => {
     const id = Math.floor(Math.random() * 10000);
-    console.log(id);
+    const newTask = { id, ...tasks };
+    setTask([...task, newTask]);
+    setShowAddTask(false);
   };
 
   //Delete task
@@ -44,10 +47,18 @@ function App() {
       )
     );
   };
+
+  const printSum = () => {
+    console.log("message");
+  };
   return (
     <div className="container">
-      <Header title={"Tracker"} />
-      <AddTask onAdd={addTask} />
+      <Header
+        title={"Tracker"}
+        onAdd={() => setShowAddTask(!showAddTask)}
+        showAdd={showAddTask}
+      />
+      {showAddTask && <AddTask onAdd={addTask} />}
       {task.length > 0 ? (
         <Task task={task} onDelete={deleteTask} onTogge={toggleReminder} />
       ) : (
