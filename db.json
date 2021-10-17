@@ -9,7 +9,7 @@
     {
       "text": "Take exam",
       "day": "November 5th 2021",
-      "reminder": true,
+      "reminder": false,
       "id": 3
     },
     {
